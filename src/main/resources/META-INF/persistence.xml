@@ -3,6 +3,10 @@
 
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">  
 		<class>br.com.tmartinelli.tinytwitter.domain.user.User</class>
+		<class>br.com.tmartinelli.tinytwitter.domain.tweet.Tweet</class>
+
+		<class>br.com.tmartinelli.tinytwitter.infrastructure.jpa.converter.LocalDatePersistenceConverter</class>
+		<class>br.com.tmartinelli.tinytwitter.infrastructure.jpa.converter.LocalDateTimePersistenceConverter</class>
 	</persistence-unit>
 
 </persistence> 

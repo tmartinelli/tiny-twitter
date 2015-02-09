@@ -23,6 +23,10 @@ public class LoggedUser implements Serializable {
 		return user != null ? user.getName() : null;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	
 	public boolean isLogged() {
 		return user != null;
 	}

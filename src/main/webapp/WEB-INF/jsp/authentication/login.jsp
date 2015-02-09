@@ -13,13 +13,12 @@
 	<c:if test="${not empty errors}">
 		<div class="alert alert-danger" role="alert">
 			<c:forEach var="error" items="${errors}">
-			    <%-- <p class="text-center">${t[error.message]}</p> --%>
 			    <p class="text-center">${error.message}</p>
 			</c:forEach>
 		</div>
 	</c:if>
 	<div class="container">
-		<form class="form-signin" action="<c:url value='/login'/>" method="post">
+		<form action="<c:url value='/login'/>" method="post" class="form-signin">
 			<h2 class="form-signin-heading">${t['login.container.title']}</h2>
 			
 			<label for="inputEmail" class="sr-only">${t['login.email']}</label>
