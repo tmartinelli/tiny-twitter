@@ -8,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import br.com.tmartinelli.tinytwitter.domain.user.User;
 
-@Entity(name = "tweet")
+@Entity
+@Table(name = "tweet")
 public class Tweet {
 
 	@Id
@@ -26,7 +28,7 @@ public class Tweet {
 	
 	@Column(nullable = false, length = 140)
 	@NotNull(message = "{tweet.content.empty}")
-	@Size(max = 140, message = "{tweet.content.length}")
+	@Size(min = 1, max = 140, message = "{tweet.content.length}")
 	private String content;
 	
 	@Column(name = "date_time", nullable = false)

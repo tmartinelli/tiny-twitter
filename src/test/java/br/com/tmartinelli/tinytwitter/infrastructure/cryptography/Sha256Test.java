@@ -15,7 +15,7 @@ public class Sha256Test {
 	}
 
 	@Test
-	public void testValidEncryptedText() {
+	public void shouldEncryptValidText() {
 		String encryptedText = sha256.encrypt("asd123");
 		assertEquals("54D5CB2D332DBDB4850293CAAE4559CE88B65163F1EA5D4E4B3AC49D772DED14", encryptedText);
 	}

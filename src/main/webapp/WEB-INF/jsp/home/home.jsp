@@ -27,6 +27,12 @@
             <li class="active"><a href="${linkTo[HomeController].home}">${t['home.title']}</a></li>
             <li><a href="${linkTo[AuthenticationController].logout}">${t['logout']}</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><p class="navbar-text">${loggedUser.name}</p></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+        	<input type="text" class="form-control" placeholder="Search...">
+          </form>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -52,6 +58,21 @@
 				<input type="text" name="content" class="form-control" id="tweetBox" placeholder="${t['home.content.placeholder']}">
 				<button type="submit" class="btn btn-primary">${t['home.send']}</button>
 			</form>
+			
+			<br />
+			
+			<c:forEach var="tweet" items="${user.timeLine}">
+				<div class="content">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							${tweet.userName} - ${format.localDateTime(tweet.dateTime)}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">${tweet.content}</div>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
     </div><!-- /.container -->
 

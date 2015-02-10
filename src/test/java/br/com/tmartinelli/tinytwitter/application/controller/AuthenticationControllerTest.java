@@ -43,7 +43,7 @@ public class AuthenticationControllerTest {
 	}
 	
 	@Test
-	public void testAuthenticatedUserSuccessfully() {
+	public void userShouldBeAuthenticatedSuccessfully() {
 		User user = new User();
 		
 		when(cryptography.encrypt(user.getPassword())).thenReturn("54D5CB2D332DBDB4850293CAAE4559CE88B65163F1EA5D4E4B3AC49D772DED14");
@@ -57,7 +57,7 @@ public class AuthenticationControllerTest {
 	}
 	
 	@Test(expected = ValidationException.class)
-	public void testAuthenticationFail() {
+	public void authenticationShouldFail() {
 		User user = new User();
 		
 		when(cryptography.encrypt(user.getPassword())).thenReturn("54D5CB2D332DBDB4850293CAAE4559CE88B65163F1EA5D4E4B3AC49D772DED15");

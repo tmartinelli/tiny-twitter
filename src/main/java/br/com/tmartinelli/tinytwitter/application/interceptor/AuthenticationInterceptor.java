@@ -1,19 +1,18 @@
 package br.com.tmartinelli.tinytwitter.application.interceptor;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-import br.com.caelum.vraptor.Accepts;
-import br.com.caelum.vraptor.BeforeCall;
+import br.com.caelum.vraptor.AroundCall;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.controller.ControllerMethod;
+import br.com.caelum.vraptor.interceptor.AcceptsWithAnnotations;
+import br.com.caelum.vraptor.interceptor.SimpleInterceptorStack;
 import br.com.tmartinelli.tinytwitter.application.LoggedUser;
 import br.com.tmartinelli.tinytwitter.application.Restrict;
 import br.com.tmartinelli.tinytwitter.application.controller.AuthenticationController;
 
 @Intercepts
-@RequestScoped
+@AcceptsWithAnnotations(Restrict.class)
 public class AuthenticationInterceptor {
 
 	private LoggedUser loggedUser;
@@ -29,15 +28,12 @@ public class AuthenticationInterceptor {
 		this.result = result;
 	}
 
-	@BeforeCall
-    public void before() {
-		if (!loggedUser.isLogged()) {
+	@AroundCall
+    public void around(SimpleInterceptorStack stack) {
+		if (loggedUser.isLogged()) {
+			stack.next();
+        } else {
         	result.redirectTo(AuthenticationController.class).login();
         }
     }
-	
-	@Accepts
-	public boolean accepts(ControllerMethod method) {
-	    return method.containsAnnotation(Restrict.class);
-	}
 }

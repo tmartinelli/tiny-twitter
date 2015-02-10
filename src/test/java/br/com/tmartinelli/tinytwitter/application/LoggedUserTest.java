@@ -20,18 +20,18 @@ public class LoggedUserTest {
 	}
 	
 	@Test
-	public void testUserIsLogged() {
+	public void userShouldBeLogged() {
 		loggedUser.login(new User());
 		assertTrue(loggedUser.isLogged());
 	}
 
 	@Test
-	public void testUserIsNotLogged() {
+	public void userShouldNotBeLogged() {
 		assertFalse(loggedUser.isLogged());
 	}
 	
 	@Test
-	public void testLogout() {
+	public void userShouldNotBeLoggedWhenLogout() {
 		loggedUser.login(new User());
 		loggedUser.logout();
 		assertFalse(loggedUser.isLogged());

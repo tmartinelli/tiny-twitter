@@ -19,6 +19,10 @@ public class LoggedUser implements Serializable {
 		this.user = user;
 	}
 	
+	public Long getId() {
+		return user != null ?  user.getId() : null;
+	}
+	
 	public String getName() {
 		return user != null ? user.getName() : null;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import br.com.tmartinelli.tinytwitter.domain.tweet.TweetRepository;
 import br.com.tmartinelli.tinytwitter.domain.user.User;
 import br.com.tmartinelli.tinytwitter.domain.user.UserRepository;
 import br.com.tmartinelli.tinytwitter.domain.user.User_;
@@ -16,9 +17,12 @@ import br.com.tmartinelli.tinytwitter.domain.user.User_;
 @RequestScoped
 public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 
+	private TweetRepository tweetRepository;
+
 	@Inject
-	public UserDAO(EntityManager entityManager) {
+	public UserDAO(EntityManager entityManager, TweetRepository tweetRepository) {
 		super(entityManager, User.class);
+		this.tweetRepository = tweetRepository;
 	}
 
 	@Override
@@ -34,5 +38,12 @@ public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+	
+	@Override
+	public User findById(Long id) {
+		User user = super.findById(id);
+		user.setTweetRepository(tweetRepository);
+		return user;
 	}
 }

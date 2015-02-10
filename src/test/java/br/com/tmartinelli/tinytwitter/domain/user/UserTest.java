@@ -17,7 +17,7 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testValidEncryptedPassword() {
+	public void passwordShouldBeEncryptedSuccessfully() {
 		user.setPassword("asd123");
 		user.encryptPassword(new Sha256());
 		assertEquals("54D5CB2D332DBDB4850293CAAE4559CE88B65163F1EA5D4E4B3AC49D772DED14", user.getPassword());

@@ -5,4 +5,6 @@ public interface UserRepository {
 	User findByEmailAndPassword(User user);
 	
 	void add(User user);
+
+	User findById(Long id);
 }
