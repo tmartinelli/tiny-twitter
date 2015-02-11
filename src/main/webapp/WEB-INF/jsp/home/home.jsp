@@ -6,36 +6,32 @@
     <meta charset="utf-8">
     <title>${t['home.title']} - ${t['app_name']}</title>
     <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='/css/jquery.autocomplete.css'/>" rel="stylesheet">
     <link href="<c:url value='/css/home/home.css'/>" rel="stylesheet">
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">${t['app_name']}</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="${linkTo[HomeController].home}">${t['home.title']}</a></li>
-            <li><a href="${linkTo[AuthenticationController].logout}">${t['logout']}</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><p class="navbar-text">${loggedUser.name}</p></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-        	<input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">${t['app_name']}</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="${linkTo[HomeController].home}">${t['home.title']}</a></li>
+					<li><a href="${linkTo[AuthenticationController].logout}">${t['logout']}</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><p class="navbar-text">${loggedUser.name}</p></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" name="country" id="searchInput" class="form-control" placeholder="${t['home.search.placeholder']}" />
+				</form>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
 
 	<div class="container">
 		<c:if test="${not empty message}">
@@ -61,22 +57,28 @@
 			
 			<br />
 			
-			<c:forEach var="tweet" items="${user.timeLine}">
-				<div class="content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-							${tweet.userName} - ${format.localDateTime(tweet.dateTime)}
+			<ul class="timeline">		
+				<c:forEach var="tweet" items="${user.timeLine}">
+					<li>
+						<div class="avatar">
+		          			<img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">${tweet.content}</div>
-					</div>
-				</div>
-			</c:forEach>
+						<div class="bubble-container">
+							<div class="bubble">
+								<h3>${tweet.userName}</h3> ${format.localDateTime(tweet.dateTime)} <br>
+								${tweet.content}
+							</div>
+							
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
 		</div>
     </div><!-- /.container -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
+    <script src="<c:url value='/js/jquery.autocomplete.min.js'/>"></script>
+    <script src="<c:url value='/js/home/home.js'/>"></script>
   </body>
 </html>

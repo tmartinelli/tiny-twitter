@@ -7,7 +7,7 @@
         </layout>
     </appender>
     <category name="br.com.caelum.vraptor">
-        <priority value="DEBUG" /> <!-- or another value such as INFO to decrease verbosity -->
+        <priority value="INFO" /> <!-- or another value such as INFO to decrease verbosity -->
         <appender-ref ref="stdout" />
     </category>
     <!-- include configurations of your project here -->

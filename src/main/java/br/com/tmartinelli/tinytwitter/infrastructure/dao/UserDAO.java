@@ -1,10 +1,11 @@
 package br.com.tmartinelli.tinytwitter.infrastructure.dao;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -27,14 +28,13 @@ public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 
 	@Override
 	public User findByEmailAndPassword(User user) {
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<User> cq = cb.createQuery(User.class);
-		Root<User> root = cq.from(User.class);
-		cq.where(cb.equal(root.get(User_.email), user.getEmail()),
-				 cb.equal(root.get(User_.password), user.getPassword()));
-		TypedQuery<User> query = entityManager.createQuery(cq);
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<User> query = builder.createQuery(User.class);
+		Root<User> root = query.from(User.class);
+		query.where(builder.equal(root.get(User_.email), user.getEmail()),
+				 builder.equal(root.get(User_.password), user.getPassword()));
 		try {
-			return query.getSingleResult();
+			return entityManager.createQuery(query).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -45,5 +45,17 @@ public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 		User user = super.findById(id);
 		user.setTweetRepository(tweetRepository);
 		return user;
+	}
+
+	@Override
+	public List<User> findByName(String name) {
+		String nameParam = new StringBuilder().append("%").append(name)
+				.append("%").toString().toLowerCase();
+		
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<User> query = builder.createQuery(User.class);
+		Root<User> root = query.from(User.class);
+		query.where(builder.like(builder.lower(root.get(User_.name)), nameParam));
+		return entityManager.createQuery(query).getResultList();
 	}
 }
