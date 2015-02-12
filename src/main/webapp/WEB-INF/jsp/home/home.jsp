@@ -25,7 +25,7 @@
 	
 	<div class="home">
 		<form action="<c:url value='/tweets'/>" method="post" class="form-inline">
-			<input type="text" name="content" class="form-control" id="tweetBox" placeholder="${t['home.content.placeholder']}">
+			<textarea name="content" id="contentTextArea" class="form-control" placeholder="${t['home.content.placeholder']}" rows="3"  maxlength="140"></textarea>
 			<button type="submit" class="btn btn-primary">${t['home.send']}</button>
 		</form>
 		
@@ -33,5 +33,10 @@
 		
 		<tt:timeline tweets="${user.timeline}" />
 	</div>
+	
+	<content tag="local_script">
+		<script src="<c:url value='/js/bootstrap-maxlength.min.js'/>"></script>
+		<script src="<c:url value='/js/home/home.js'/>"></script>
+	</content>
 </body>
 </html>

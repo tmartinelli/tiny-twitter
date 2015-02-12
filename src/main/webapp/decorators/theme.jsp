@@ -43,5 +43,6 @@
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/jquery.autocomplete.min.js'/>"></script>
 	<script src="<c:url value='/js/quick-search.js'/>"></script>
+	<decorator:getProperty property="page.local_script"></decorator:getProperty>
 </body>
 </html>
