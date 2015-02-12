@@ -12,4 +12,5 @@ public class User_ {
 	public static volatile SingularAttribute<User, String> email;
 	public static volatile SingularAttribute<User, String> password;
 	public static volatile SetAttribute<User, User> following;
+	public static volatile SetAttribute<User, User> followers;
 }

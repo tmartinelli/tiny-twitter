@@ -11,4 +11,6 @@ public interface UserRepository {
 	User findById(Long id);
 
 	List<User> findByName(String name);
+
+	User findFullById(Long id);
 }

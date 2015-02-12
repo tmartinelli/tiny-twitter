@@ -8,6 +8,7 @@
     <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/css/jquery.autocomplete.css'/>" rel="stylesheet">
     <link href="<c:url value='/css/home/home.css'/>" rel="stylesheet">
+    <link href="<c:url value='/css/timeline.css'/>" rel="stylesheet">
   </head>
 
   <body>
@@ -58,7 +59,7 @@
 			<br />
 			
 			<ul class="timeline">		
-				<c:forEach var="tweet" items="${user.timeLine}">
+				<c:forEach var="tweet" items="${user.timeline}">
 					<li>
 						<div class="avatar">
 		          			<img src="http://www.croop.cl/UI/twitter/images/doug.jpg">
@@ -79,6 +80,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
     <script src="<c:url value='/js/jquery.autocomplete.min.js'/>"></script>
-    <script src="<c:url value='/js/home/home.js'/>"></script>
+    <script src="<c:url value='/js/quick-search.js'/>"></script>
+    
   </body>
 </html>

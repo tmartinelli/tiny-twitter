@@ -8,5 +8,7 @@ public interface TweetRepository {
 
 	void add(Tweet tweet);
 
-	List<Tweet> getTimeLineBy(User user);
+	List<Tweet> getTimelineBy(User user);
+
+	List<Tweet> findBy(User user);
 }

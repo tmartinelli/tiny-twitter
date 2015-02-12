@@ -1,10 +1,8 @@
 package br.com.tmartinelli.tinytwitter.domain.user;
 
-
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,18 +34,22 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 	
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany
 	@JoinTable(name = "follow",
-	            joinColumns = { @JoinColumn(name = "following_id")}, 
-	            inverseJoinColumns={@JoinColumn(name="follower_id")})
+	            joinColumns = { @JoinColumn(name = "follower_id")}, 
+	            inverseJoinColumns={@JoinColumn(name="following_id")})
 	private Set<User> following;
 	
 	@ManyToMany(mappedBy="following")
 	private Set<User> followers;
-
+	
 	@Transient
 	private TweetRepository tweetRepository;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -80,12 +82,42 @@ public class User {
 		password = cryptography.encrypt(password);
 	}
 	
-	public List<Tweet> getTimeLine() {
-		return tweetRepository.getTimeLineBy(this);
+	public List<Tweet> getTimeline() {
+		return tweetRepository.getTimelineBy(this);
+	}
+	
+	public List<Tweet> getTweets() {
+		return tweetRepository.findBy(this);
+	}
+	
+	public boolean isFollowedBy(User user) {
+		return followers.contains(user);
+	}
+	
+	public void follow(User user) {
+		following.add(user);
+	}
+	
+	public void unfollow(User user) {
+		following.remove(user);
 	}
 	
 	//TODO: search method to inject components
 	public void setTweetRepository(TweetRepository tweetRepository) {
 		this.tweetRepository = tweetRepository;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof User)) {
+			return false;
+		}
+		return id.equals(((User) obj).id) ? true : false;
+	}
+	
+	//TODO: refactoring
+	@Override
+	public int hashCode() {
+		return id.intValue();
 	}
 }

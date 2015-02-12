@@ -25,14 +25,25 @@ public class TweetDAO extends GenericDAO<Tweet, Long> implements TweetRepository
 	}
 
 	@Override
-	public List<Tweet> getTimeLineBy(User user) {
+	public List<Tweet> getTimelineBy(User user) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Tweet> query = builder.createQuery(Tweet.class);
 		Root<Tweet> root = query.from(Tweet.class);
 		
-		SetJoin<User, User> followingJoin = root.join(Tweet_.user).join(User_.following);
+		SetJoin<User, User> follower = root.join(Tweet_.user).join(User_.followers);
+		query.where(builder.equal(follower.get(User_.id), user.getId()));
+		query.orderBy(builder.desc(root.get(Tweet_.dateTime)));
 		
-		query.where(builder.equal(followingJoin.get(User_.id), user.getId()));
+		return entityManager.createQuery(query).getResultList();
+	}
+
+	@Override
+	public List<Tweet> findBy(User user) {
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Tweet> query = builder.createQuery(Tweet.class);
+		Root<Tweet> root = query.from(Tweet.class);
+		
+		query.where(builder.equal(root.get(Tweet_.user), user));
 		query.orderBy(builder.desc(root.get(Tweet_.dateTime)));
 		
 		return entityManager.createQuery(query).getResultList();

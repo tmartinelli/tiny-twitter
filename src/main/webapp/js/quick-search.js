@@ -1,10 +1,10 @@
 $(document).ready( function() {
 
-	search();
+	quickSearch();
 	
 });
 
-function search() {
+function quickSearch() {
 	$("#searchInput").autocomplete({
 		serviceUrl: "/tiny-twitter/users",
 		paramName: "name",
