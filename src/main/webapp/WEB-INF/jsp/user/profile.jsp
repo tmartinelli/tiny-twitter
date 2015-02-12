@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,22 +39,7 @@
 	</div>
 	
 	<br />
-		
-	<ul class="timeline">		
-		<c:forEach var="tweet" items="${user.tweets}">
-			<li>
-				<div class="avatar">
-          			<img src="http://www.croop.cl/UI/twitter/images/carl.jpg">
-				</div>
-				<div class="bubble-container">
-					<div class="bubble">
-						<h3>${user.name}</h3> ${format.localDateTime(tweet.dateTime)} <br>
-						${tweet.content}
-					</div>
-					
-				</div>
-			</li>
-		</c:forEach>
-	</ul>
+	
+	<tt:timeline tweets="${user.tweets}" />
 </body>
 </html>
