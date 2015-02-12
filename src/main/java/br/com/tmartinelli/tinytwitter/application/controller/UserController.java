@@ -41,7 +41,7 @@ public class UserController {
 	@Restrict
 	public void search(String name) {
 		List<User> users = userRepository.findByName(name);
-		result.use(json()).from(users, "users").exclude("password").serialize();
+		result.use(json()).from(users, "users").exclude("password").include("id").serialize();
 	}
 
 	@Get("/users/{id}")
@@ -72,6 +72,6 @@ public class UserController {
 	public void add(User user) {
 		user.encryptPassword(cryptography);
 		userRepository.add(user);
-		result.use(json()).from(user).exclude("password").serialize();
+		result.use(json()).from(user).exclude("password").include("id").serialize();
 	}
 }

@@ -11,7 +11,7 @@
 				</div>
 				<div class="bubble-container">
 					<div class="bubble">
-						<h3>${user.name}</h3> ${format.localDateTime(tweet.dateTime)} <br>
+						<h3>${tweet.userName}</h3> ${format.localDateTime(tweet.dateTime)} <br>
 						${tweet.content}
 					</div>
 					

@@ -5,26 +5,21 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import br.com.tmartinelli.tinytwitter.domain.BaseEntity;
 import br.com.tmartinelli.tinytwitter.domain.Cryptography;
 import br.com.tmartinelli.tinytwitter.domain.tweet.Tweet;
 import br.com.tmartinelli.tinytwitter.domain.tweet.TweetRepository;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends BaseEntity{
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	
 	@Column(nullable = false)
 	private String name;
 	
@@ -45,14 +40,6 @@ public class User {
 	
 	@Transient
 	private TweetRepository tweetRepository;
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public Long getId() {
-		return id;
-	}
 
 	public String getName() {
 		return name;
@@ -108,16 +95,7 @@ public class User {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof User)) {
-			return false;
-		}
-		return id.equals(((User) obj).id) ? true : false;
-	}
-	
-	//TODO: refactoring
-	@Override
 	public int hashCode() {
-		return id.intValue();
+		return getId().hashCode();
 	}
 }

@@ -31,7 +31,7 @@ public class TweetDAO extends GenericDAO<Tweet, Long> implements TweetRepository
 		Root<Tweet> root = query.from(Tweet.class);
 		
 		SetJoin<User, User> follower = root.join(Tweet_.user).join(User_.followers);
-		query.where(builder.equal(follower.get(User_.id), user.getId()));
+		query.where(builder.equal(follower.get("id"), user.getId()));
 		query.orderBy(builder.desc(root.get(Tweet_.dateTime)));
 		
 		return entityManager.createQuery(query).getResultList();

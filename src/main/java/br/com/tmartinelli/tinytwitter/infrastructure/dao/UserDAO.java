@@ -71,7 +71,7 @@ public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 		Root<User> root = query.from(User.class);
 		root.fetch(User_.followers, JoinType.LEFT);
 		
-		query.where(builder.equal(root.get(User_.id), id));
+		query.where(builder.equal(root.get("id"), id));
 		
 		User user = entityManager.createQuery(query).getSingleResult();
 		user.setTweetRepository(tweetRepository);

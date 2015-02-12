@@ -4,24 +4,19 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.tmartinelli.tinytwitter.domain.BaseEntity;
 import br.com.tmartinelli.tinytwitter.domain.user.User;
 
 @Entity
 @Table(name = "tweet")
-public class Tweet {
+public class Tweet extends BaseEntity {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private User user;
@@ -42,10 +37,6 @@ public class Tweet {
 		this.user = user;
 		this.content = content;
 		dateTime = LocalDateTime.now();
-	}
-	
-	public Long getId() {
-		return id;
 	}
 	
 	public String getUserName() {
