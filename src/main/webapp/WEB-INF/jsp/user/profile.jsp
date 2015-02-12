@@ -13,9 +13,9 @@
 		</div>			
 		<div class="data">
 			<ul>
-				<li>2,934 <span>Tweets</span></li>
-				<li>1,119 <span>Followers</span></li>
-				<li>530 <span>Following</span></li>
+				<li>2.934 <span>${t['profile.tweets']}</span></li>
+				<li>1.119 <span>${t['profile.followers']}</span></li>
+				<li>530 <span>${t['profile.following']}</span></li>
 			</ul>
 		</div>
 		
@@ -24,13 +24,13 @@
 				<c:when test="${user.isFollowedBy(loggedUser.user)}">
 					<form action="<c:url value='/following/${user.id}' />" method="post">
 						<input type="hidden" name="_method" value="delete" />
-						<button type="submit" class="action-btn unfollow">Unfollow</button>
+						<button type="submit" class="action-btn unfollow">${t['profile.unfollow']}</button>
 					</form>
 				</c:when>
 				<c:otherwise>
 					<form action="<c:url value='/following' />" method="post">
 						<input type="hidden" name="user.id" value="${user.id}" />
-						<button type="submit" class="action-btn follow">Follow</button>
+						<button type="submit" class="action-btn follow">${t['profile.follow']}</button>
 					</form>
 				</c:otherwise>
 			</c:choose>
