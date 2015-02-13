@@ -11,7 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
-import br.com.tmartinelli.tinytwitter.domain.tweet.TweetRepository;
 import br.com.tmartinelli.tinytwitter.domain.user.User;
 import br.com.tmartinelli.tinytwitter.domain.user.UserRepository;
 import br.com.tmartinelli.tinytwitter.domain.user.User_;
@@ -19,12 +18,13 @@ import br.com.tmartinelli.tinytwitter.domain.user.User_;
 @RequestScoped
 public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 
-	private TweetRepository tweetRepository;
-
+	public UserDAO() {
+		this(null);
+	}
+	
 	@Inject
-	public UserDAO(EntityManager entityManager, TweetRepository tweetRepository) {
+	public UserDAO(EntityManager entityManager) {
 		super(entityManager, User.class);
-		this.tweetRepository = tweetRepository;
 	}
 
 	@Override
@@ -42,13 +42,6 @@ public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 		}
 	}
 	
-	@Override
-	public User findById(Long id) {
-		User user = super.findById(id);
-		user.setTweetRepository(tweetRepository);
-		return user;
-	}
-
 	@Override
 	public List<User> findByName(String name) {
 		String nameParam = new StringBuilder().append("%").append(name)
@@ -73,9 +66,6 @@ public class UserDAO extends GenericDAO<User, Long> implements UserRepository {
 		
 		query.where(builder.equal(root.get("id"), id));
 		
-		User user = entityManager.createQuery(query).getSingleResult();
-		user.setTweetRepository(tweetRepository);
-		
-		return user;
+		return entityManager.createQuery(query).getSingleResult();
 	}
 }

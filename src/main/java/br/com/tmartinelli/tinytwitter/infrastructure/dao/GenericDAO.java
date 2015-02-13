@@ -14,6 +14,10 @@ public abstract class GenericDAO<T, ID> {
 	
 	private Class<T> clazz;
 	
+	public GenericDAO() {
+		this(null, null);
+	}
+	
 	public GenericDAO(EntityManager entityManager, Class<T> clazz) {
 		this.entityManager = entityManager;
 		this.clazz = clazz;

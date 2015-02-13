@@ -19,6 +19,10 @@ import br.com.tmartinelli.tinytwitter.domain.user.User_;
 @RequestScoped
 public class TweetDAO extends GenericDAO<Tweet, Long> implements TweetRepository {
 
+	public TweetDAO() {
+		this(null);
+	}
+	
 	@Inject
 	public TweetDAO(EntityManager entityManager) {
 		super(entityManager, Tweet.class);

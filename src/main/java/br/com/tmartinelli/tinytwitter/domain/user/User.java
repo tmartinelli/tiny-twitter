@@ -3,8 +3,10 @@ package br.com.tmartinelli.tinytwitter.domain.user;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -15,9 +17,11 @@ import br.com.tmartinelli.tinytwitter.domain.BaseEntity;
 import br.com.tmartinelli.tinytwitter.domain.Cryptography;
 import br.com.tmartinelli.tinytwitter.domain.tweet.Tweet;
 import br.com.tmartinelli.tinytwitter.domain.tweet.TweetRepository;
+import br.com.tmartinelli.tinytwitter.infrastructure.jpa.listener.UserListener;
 
 @Entity
 @Table(name = "user")
+@EntityListeners(UserListener.class)
 public class User extends BaseEntity{
 
 	@Column(nullable = false)
@@ -96,7 +100,6 @@ public class User extends BaseEntity{
 		following.remove(user);
 	}
 	
-	//TODO: search method to inject components
 	public void setTweetRepository(TweetRepository tweetRepository) {
 		this.tweetRepository = tweetRepository;
 	}
