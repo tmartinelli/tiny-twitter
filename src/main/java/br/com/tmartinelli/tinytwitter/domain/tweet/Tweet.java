@@ -39,12 +39,8 @@ public class Tweet extends BaseEntity {
 		dateTime = LocalDateTime.now();
 	}
 	
-	public String getUserName() {
-		return user != null ? user.getName() : null;
-	}
-	
-	public String getUserAvatar() {
-		return user != null ? user.getAvatar() : null;
+	public User getUser() {
+		return user;
 	}
 	
 	public String getContent() {

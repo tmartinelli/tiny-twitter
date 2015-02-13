@@ -7,11 +7,13 @@
 		<c:forEach var="tweet" items="${tweets}">
 			<li>
 				<div class="avatar">
-          			<img src="<c:url value='/img/avatar/${tweet.userAvatar}' />">
+          			<a href="<c:url value='/users/${tweet.user.id}' />">
+	          			<img src="<c:url value='/img/avatar/${tweet.user.avatar}' />">
+          			</a>
 				</div>
 				<div class="bubble-container">
 					<div class="bubble">
-						<h3>${tweet.userName}</h3> ${format.localDateTime(tweet.dateTime)} <br>
+						<h3>${tweet.user.name}</h3> ${format.localDateTime(tweet.dateTime)} <br>
 						${tweet.content}
 					</div>
 					
