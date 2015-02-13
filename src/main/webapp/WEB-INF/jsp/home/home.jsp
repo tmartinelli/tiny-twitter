@@ -31,7 +31,7 @@
 		
 		<br />
 		
-		<tt:timeline tweets="${user.timeline}" />
+		<tt:timeline tweets="${timeline}" />
 	</div>
 	
 	<content tag="local_script">

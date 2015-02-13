@@ -80,10 +80,6 @@ public class User extends BaseEntity{
 		password = cryptography.encrypt(password);
 	}
 	
-	public List<Tweet> getTimeline() {
-		return tweetRepository.getTimelineBy(this);
-	}
-	
 	public List<Tweet> getTweets() {
 		return tweetRepository.findBy(this);
 	}
