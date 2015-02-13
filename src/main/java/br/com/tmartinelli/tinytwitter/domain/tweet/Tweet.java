@@ -43,6 +43,10 @@ public class Tweet extends BaseEntity {
 		return user != null ? user.getName() : null;
 	}
 	
+	public String getUserAvatar() {
+		return user != null ? user.getAvatar() : null;
+	}
+	
 	public String getContent() {
 		return content;
 	}

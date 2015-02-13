@@ -10,7 +10,7 @@
 <body>
 	<div class="content">
 		<div class="avatarcontainer">
-			<img src="http://www.croop.cl/UI/twitter/images/carl.jpg" alt="avatar" class="avatar">
+			<img src="<c:url value='/img/avatar/${user.avatar}' />" alt="avatar" class="avatar">
 		</div>			
 		<div class="data">
 			<ul>

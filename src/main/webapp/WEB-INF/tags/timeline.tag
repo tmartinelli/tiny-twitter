@@ -7,7 +7,7 @@
 		<c:forEach var="tweet" items="${tweets}">
 			<li>
 				<div class="avatar">
-          			<img src="http://www.croop.cl/UI/twitter/images/carl.jpg">
+          			<img src="<c:url value='/img/avatar/${tweet.userAvatar}' />">
 				</div>
 				<div class="bubble-container">
 					<div class="bubble">
