@@ -8,8 +8,8 @@
 <head>
 	<meta charset="utf-8">
 	<title><decorator:title /></title>
-	<link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
-	<link href="<c:url value='/css/jquery.autocomplete.css'/>" rel="stylesheet">
+	<link href="<c:url value='/css/bootstrap/bootstrap.min.css'/>" rel="stylesheet">
+	<link href="<c:url value='/css/bootstrap/plugins/jquery.autocomplete.css'/>" rel="stylesheet">
 	<link href="<c:url value='/css/timeline.css'/>" rel="stylesheet">
 	<decorator:head />
 </head>
@@ -40,8 +40,8 @@
 	</div><!-- /.container -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
-	<script src="<c:url value='/js/jquery.autocomplete.min.js'/>"></script>
+	<script src="<c:url value='/js/bootstrap/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/js/bootstrap/plugins/jquery.autocomplete.min.js'/>"></script>
 	<script src="<c:url value='/js/quick-search.js'/>"></script>
 	<decorator:getProperty property="page.local_script"></decorator:getProperty>
 </body>

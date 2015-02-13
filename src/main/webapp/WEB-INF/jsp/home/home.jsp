@@ -35,7 +35,7 @@
 	</div>
 	
 	<content tag="local_script">
-		<script src="<c:url value='/js/bootstrap-maxlength.min.js'/>"></script>
+		<script src="<c:url value='/js/bootstrap/plugins/bootstrap-maxlength.min.js'/>"></script>
 		<script src="<c:url value='/js/home/home.js'/>"></script>
 	</content>
 </body>

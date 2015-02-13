@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>${t['login.title']} - ${t['app_name']}</title>
-	<link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+	<link href="<c:url value='/css/bootstrap/bootstrap.min.css'/>" rel="stylesheet">
 	<link href="<c:url value='/css/authentication/login.css' />" rel="stylesheet">
 </head>
 
