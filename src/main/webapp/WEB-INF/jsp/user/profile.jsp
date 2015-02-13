@@ -14,9 +14,9 @@
 		</div>			
 		<div class="data">
 			<ul>
-				<li>2.934 <span>${t['profile.tweets']}</span></li>
-				<li>1.119 <span>${t['profile.followers']}</span></li>
-				<li>530 <span>${t['profile.following']}</span></li>
+				<li>- <span>${t['profile.tweets']}</span></li>
+				<li>- <span>${t['profile.followers']}</span></li>
+				<li>- <span>${t['profile.following']}</span></li>
 			</ul>
 		</div>
 		
